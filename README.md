@@ -98,21 +98,72 @@ export class YourService {
   }
 }
 ```
+## 매서드
+
+### sendMessage(params: `SendMessageParams`) : `SuccessSendMessage`
+```typescript
+const sendMessageParams = {
+    sender: 'SENDER_PHONE_NUMBER',
+    receiver: 'RECEIVER_PHONE_NUMBER',
+    message: 'Your message goes here',
+    // Optional parameters
+    name: 'Name goes here',
+    appointmentDate: '20190502093000',
+    subject: 'Subject goes here',
+    file1: '/path/to/your/file.jpg',
+};
+
+try {
+    const result = await ppurio.sendMessage(sendMessageParams);
+    console.log(result);
+} catch (error) {
+    console.error(error);
+}
+
+```
+
+### cancelReservation(params: `CancelReservationParams`) : `SuccessCancelReservation`
+```typescript
+const cancelReservationParams = {
+    messageId: 'YOUR_MESSAGE_ID',
+};
+
+try {
+    const result = await ppurio.cancelReservation(cancelReservationParams);
+    console.log(result);
+} catch (error) {
+    console.error(error);
+}
+
+```
+
+
+## 오류 처리
+Ppurio는 PpurioException을 던져서 API 호출에서 발생하는 오류를 처리합니다. 이 예외는 오류 메시지와 오류 코드를 포함합니다.
+```typescript
+try {
+  // Ppurio API call
+} catch (error) {
+  if (error instanceof PpurioException) {
+    console.error(`An error occurred: ${error.message}, code: ${error.code}`);
+  }
+}
+```
 
 
 ## 타입 및 에러 메시지
 
 ### 발송메세지 파라미터 (`SendMessageParams`)
 
-| 속성명 | 타입 | 설명 |
-| --- | --- | --- |
-| sender | string | 발신 번호 - 숫자만 |
-| receiver | string \| string[] | 수신 번호 - 여러명일 경우 배열로 입력 |
-| message | string | 문자 내용 - 이름(name)값이 있다면 [*이름*]가 치환되서 발송됨 |
-| name | string \| string[] (Optional) | 이름 - 여러명일 경우 배열로 입력 |
+| 속성명 | 타입 | 설명                                              |
+| --- | --- |-------------------------------------------------|
+| sender | string | 발신 번호 - 숫자만                                     |
+| receiver | string \| string[] | 수신 번호 - 여러명일 경우 배열로 입력                          |
+| message | string | 문자 내용 - 이름(name)값이 있다면 [*이름*]가 치환되서 발송됨         |
+| name | string \| string[] (Optional) | 이름 - 여러명일 경우 배열로 입력                             |
 | appointmentDate | string (Optional) | 예약 발송 (현재시간 기준 10분이후 예약가능) 작성 예: 20190502093000 |
-| subject | string (Optional) | 제목 (30byte) |
-| file1 | string (Optional) | 포토 발송 (jpg, jpeg만 지원 300 K 이하) |
+| subject | string (Optional) | 제목 (최대 30byte)                                  |
+| file1 | string (Optional) | 이미지파일 경로 (jpg, jpeg만 지원 300 K 이하)               |
 
 ### 메세지 발송취소시 파라미터 (`CancelReservationParams`)
 
