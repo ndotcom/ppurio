@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "incremental": true,
+    "target": "es5",                 // 컴파일된 JavaScript의 ECMAScript 버전을 지정
+    "module": "commonjs",            // 사용할 모듈 시스템을 지정
+    "strict": true,                  // 모든 타입 체킹 옵션을 활성화
+//    "esModuleInterop": true,         // ES 모듈과의 호환성 확보
+    "skipLibCheck": true,            // 타입 선언 파일의 타입 체크 건너뛰기
+    "forceConsistentCasingInFileNames": true, // 일관된 파일 이름 대소문자 사용 강제
+    "resolveJsonModule": true,       // JSON 모듈을 import할 수 있게 함
+    "isolatedModules": true,         // 각 파일을 분리된 모듈로서 다룸 (예: Babel, ts-loader, ts-jest)
+    "outDir": "dist",                // 출력할 디렉토리 지정
+    "declaration": true,             // .d.ts 선언 파일 생성
+    "moduleResolution": "node"       // Node.js-style 모듈 해석 사용
+  },
+  "include": [
+    "src/**/*.ts"                   // 컴파일할 파일 지정
+  ],
+  "exclude": [
+    "node_modules",                // 컴파일에서 제외할 파일/디렉토리 지정
+    "**/*.test.ts"
+  ]
+}
