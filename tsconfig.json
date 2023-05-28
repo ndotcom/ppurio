@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "removeComments": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "incremental": true,

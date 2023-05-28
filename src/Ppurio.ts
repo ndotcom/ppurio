@@ -18,6 +18,9 @@ import { PpurioException } from "./PpurioException";
 
 const stat = promisify(fs.stat);
 
+/**
+ * 뿌리오 클래스
+ */
 export class Ppurio {
   userId: string;
 
@@ -25,6 +28,10 @@ export class Ppurio {
     this.userId = userId;
   }
 
+  /**
+   * 메세지 보내기
+   * @param params
+   */
   public async sendMessage(
     params: SendMessageParams
   ): Promise<SuccessSendMessage> {
@@ -73,6 +80,10 @@ export class Ppurio {
     return { type, messageId, okCount };
   }
 
+  /**
+   * 예약전송 취소
+   * @param params
+   */
   public async cancelReservation(
     params: CancelReservationParams
   ): Promise<SuccessCancelReservation> {
